@@ -79,17 +79,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dataToCalculate = dataToCalculate.substring(0, dataToCalculate.length() - 1);
             }
         } else {
-            if(dataToCalculate.startsWith("0")){
-                dataToCalculate = dataToCalculate.replace("0","");
+            if (dataToCalculate.startsWith("0")) {
+                dataToCalculate = dataToCalculate.replace("0", "");
             }
             dataToCalculate = dataToCalculate + buttonText;
         }
         solutionTv.setText(dataToCalculate);
 
-        String finalResult = getResult(dataToCalculate);
+        String midResult = removeZeroes(dataToCalculate);
+
+        String finalResult = getResult(midResult);
         if (!finalResult.equals("Err")) {
             resultTv.setText(finalResult);
         }
+    }
+
+    public static String removeZeroes(String input) {
+        StringBuilder result = new StringBuilder();
+        boolean skipZero = false;
+
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c == '+' || c == '-' || c == '*' || c == '/') {
+                skipZero = true;
+                result.append(c);
+            } else if (c == '0' && skipZero) {
+                // Skip zeroes after operators
+                continue;
+            } else {
+                skipZero = false;
+                result.append(c);
+            }
+        }
+
+        return result.toString();
     }
 
     public String getResult(String data) {
