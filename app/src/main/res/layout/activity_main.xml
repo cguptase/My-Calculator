@@ -14,7 +14,6 @@
         android:layout_margin="16dp"
         android:text=""
         android:textAlignment="textEnd"
-        android:textColor="@color/white"
         android:textSize="32sp" />
 
     <TextView
@@ -25,7 +24,6 @@
         android:layout_margin="16dp"
         android:text="@string/_0"
         android:textAlignment="textEnd"
-        android:textColor="@color/white"
         android:textSize="64sp" />
 
     <LinearLayout
